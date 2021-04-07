@@ -2,7 +2,7 @@
 cd /home/container
 
 # Auto Update
-if [ "${AUTO_UPDATE}" == "1" ]; then
+if [ "${UPDATE}" == "1" ]; then
     # Update SCP: SL Dedicated Server
     ./steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/container +app_update 996560 validate +quit
 
