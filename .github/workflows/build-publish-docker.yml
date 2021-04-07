@@ -1,0 +1,24 @@
+name: Build and Publish Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      egg:
+        description: "Egg Name:"
+        required: true
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: ./${{ github.event.inputs.egg }}/image
+          push: true
+          tags: bungeefield/pterodactyl-${{ github.event.inputs.egg }}:latest
