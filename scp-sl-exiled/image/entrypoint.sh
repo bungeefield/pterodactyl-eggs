@@ -8,7 +8,7 @@ if [ "${UPDATE}" == "1" ]; then
 
     # Update EXILED
     rm -f Exiled.Installer-Linux
-    wget https://github.com/Exiled-Team/EXILED/releases/download/2.8.0/Exiled.Installer-Linux
+    wget --no-hsts https://github.com/Exiled-Team/EXILED/releases/download/2.8.0/Exiled.Installer-Linux
     chmod +x Exiled.Installer-Linux
     ./Exiled.Installer-Linux --path /home/container --exit
     rm -f Exiled.Installer-Linux
