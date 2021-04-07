@@ -1,1 +1,1 @@
-"# pterodactyl-eggs" 
+# pterodactyl-eggs
