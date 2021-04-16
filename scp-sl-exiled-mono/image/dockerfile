@@ -4,7 +4,7 @@ USER root
 
 # Install lib32gcc1, libicu, wget
 RUN apt update
-RUN apt install -y lib32gcc1 libicu wget
+RUN apt install -y lib32gcc1 libicu-dev wget
 RUN apt update && apt upgrade -y
 
 # Create user
