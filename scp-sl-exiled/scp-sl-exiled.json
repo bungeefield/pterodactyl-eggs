@@ -4,7 +4,7 @@
     "version": "PTDL_v1",
     "update_url": null
   },
-  "exported_at": "2021-04-16T14:58:31+01:00",
+  "exported_at": "2021-04-16T16:00:11+01:00",
   "name": "SCP: SL - EXILED",
   "author": "bungeefield@gmail.com",
   "description": "A SCP: SL server with EXILED.",
@@ -20,8 +20,8 @@
   },
   "scripts": {
     "installation": {
-      "script": "#!/bin/bash\r\nmkdir -p /mnt/server/\r\ncd /mnt/server\r\n\r\n# Install lib32gcc1, wget\r\napt update\r\napt install -y lib32gcc1 wget\r\n\r\n# Install steamcmd\r\nmkdir -p steamcmd\r\nwget --no-hsts https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd_linux.tar.gz -C steamcmd\r\nrm steamcmd_linux.tar.gz\r\n\r\n# Permissions\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n# Setup libraries\r\nmkdir -p .steam/sdk32\r\nmkdir -p .steam/sdk64\r\ncp -v steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so\r\ncp -v steamcmd/linux64/steamclient.so .steam/sdk64/steamclient.so\r\n\r\n# Install SCP: SL Dedicated Server\r\nmkdir -p .config\r\n./steamcmd/steamcmd.sh +login anonymous +force_install_dir /mnt/server +app_update 996560 validate +quit\r\n\r\n# Install EXILED\r\nwget --no-hsts https://github.com/Exiled-Team/EXILED/releases/download/2.8.0/Exiled.Installer-Linux\r\nchmod +x Exiled.Installer-Linux\r\n./Exiled.Installer-Linux --path /mnt/server --exit\r\nrm Exiled.Installer-Linux",
-      "container": "mono:6",
+      "script": "#!/bin/bash\r\nmkdir -p /mnt/server/\r\ncd /mnt/server\r\n\r\n# Install lib32gcc1, libicu-dev, wget\r\napt update\r\napt install -y lib32gcc1 libicu-dev wget\r\n\r\n# Install steamcmd\r\nmkdir -p steamcmd\r\nwget --no-hsts https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd_linux.tar.gz -C steamcmd\r\nrm steamcmd_linux.tar.gz\r\n\r\n# Permissions\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n# Install SCP: SL Dedicated Server\r\nmkdir -p .config\r\n./steamcmd/steamcmd.sh +login anonymous +force_install_dir /mnt/server +app_update 996560 validate +quit\r\n\r\n# Setup libraries\r\nmkdir -p .steam/sdk32\r\nmkdir -p .steam/sdk64\r\ncp -v steamcmd/linux32/steamclient.so .steam/sdk32/steamclient.so\r\ncp -v steamcmd/linux64/steamclient.so .steam/sdk64/steamclient.so\r\n\r\n# Install EXILED\r\nwget --no-hsts https://github.com/Exiled-Team/EXILED/releases/download/2.8.0/Exiled.Installer-Linux\r\nchmod +x Exiled.Installer-Linux\r\n./Exiled.Installer-Linux --path /mnt/server --exit\r\nrm Exiled.Installer-Linux",
+      "container": "mono:6.12.0.107-slim",
       "entrypoint": "bash"
     }
   },
