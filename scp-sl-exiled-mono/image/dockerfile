@@ -1,0 +1,18 @@
+FROM mono:6.12.0.107-slim
+LABEL maintainer="bungeefield"
+USER root
+
+# Install lib32gcc1, wget
+RUN apt update
+RUN apt install -y lib32gcc1 wget
+RUN apt update && apt upgrade -y
+
+# Create user
+RUN useradd -d /home/container -m container
+USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
+
+# Copy entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]
