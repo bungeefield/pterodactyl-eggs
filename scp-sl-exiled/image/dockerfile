@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-MAINTAINER bungeefield
+LABEL maintainer="bungeefield"
 USER root
 
 # Install mono-complete, lib32gcc1, wget
